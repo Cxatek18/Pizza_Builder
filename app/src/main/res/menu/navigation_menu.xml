@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ready_made_pizza_icon"
+        android:title="@string/item_menu_text_home_page" />
+
+    <item
+        android:id="@+id/pizza_builder_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/pizza_builder_icon"
+        android:title="@string/item_menu_text_pizza_builder_page" />
+
+    <item
+        android:id="@+id/basket_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/basket_menu_icon"
+        android:title="@string/item_menu_text_basket_page" />
+
+    <item
+        android:id="@+id/favorite_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/favorite_menu_icon"
+        android:title="@string/item_menu_text_favorite_page" />
+
+    <item
+        android:id="@+id/user_info_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/user_menu_icon"
+        android:title="@string/item_menu_text_user_page" />
+
+</menu>

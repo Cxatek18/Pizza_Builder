@@ -1,4 +1,4 @@
-package com.team.pizzabuilder.presentation
+package com.team.pizzabuilder.presentation.general.activitys
 
 import android.animation.Animator
 import android.app.ActivityOptions
@@ -37,7 +37,7 @@ class SplashScreen : AppCompatActivity() {
                     context = this@SplashScreen
                 )
                 val enterAnimation = com.google.android.material
-                    .R.anim.linear_indeterminate_line1_head_interpolator
+                    .R.anim.m3_side_sheet_enter_from_right
                 val exitAnimation = androidx.appcompat.R.anim.abc_fade_out
                 val activityOptions = ActivityOptions.makeCustomAnimation(
                     applicationContext, enterAnimation, exitAnimation
