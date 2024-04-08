@@ -1,6 +1,6 @@
 package com.team.pizzabuilder.data.general.database
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -16,7 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
         private val LOCK = Any()
         private const val DB_NAME = "pizza_builder.db"
 
-        fun getInstance(application: Application): AppDatabase {
+        fun getInstance(context: Context): AppDatabase {
             INSTANCE?.let {
                 return it
             }
@@ -25,7 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
                     return it
                 }
                 val db = Room.databaseBuilder(
-                    application,
+                    context.applicationContext,
                     AppDatabase::class.java,
                     DB_NAME
                 ).build()

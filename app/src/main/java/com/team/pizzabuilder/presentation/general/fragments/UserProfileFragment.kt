@@ -11,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.team.pizzabuilder.R
 import com.team.pizzabuilder.databinding.FragmentUserProfileBinding
 import com.team.pizzabuilder.presentation.navigate.NavigateHelperFragments
-import com.team.pizzabuilder.presentation.owner.CreatePizzaFragment
 
 class UserProfileFragment : Fragment() {
 

@@ -1,21 +1,16 @@
-package com.team.pizzabuilder.presentation.owner
+package com.team.pizzabuilder.presentation.owner.view_models
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.team.pizzabuilder.data.general.repository.PizzaRepositoryImpl
 import com.team.pizzabuilder.domain.general.models.Pizza
 import com.team.pizzabuilder.domain.general.usecase.CreatePizzaUseCase
 import kotlinx.coroutines.launch
 
-class CreatePizzaViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = PizzaRepositoryImpl(
-        application = application
-    )
-    private val createPizzaUseCase = CreatePizzaUseCase(repository)
+class CreatePizzaViewModel(
+    val createPizzaUseCase: CreatePizzaUseCase
+) : ViewModel() {
 
     private val _errorInputName = MutableLiveData<Boolean>()
     val errorInputName: LiveData<Boolean>
@@ -42,7 +37,7 @@ class CreatePizzaViewModel(application: Application) : AndroidViewModel(applicat
         val description = parseDescription(description)
         val imageUrl = parseImageUrl(imageUrl)
         val price = parsePrice(price)
-        if(validateInput(name, description, imageUrl, price)) {
+        if (validateInput(name, description, imageUrl, price)) {
             viewModelScope.launch {
                 val pizza = Pizza(
                     name = name,
@@ -86,7 +81,7 @@ class CreatePizzaViewModel(application: Application) : AndroidViewModel(applicat
         if (name.isBlank()) {
             _errorInputName.value = false
             result = false
-        }else {
+        } else {
             _errorInputName.value = true
         }
         if (description.isBlank()) {
@@ -95,7 +90,7 @@ class CreatePizzaViewModel(application: Application) : AndroidViewModel(applicat
         } else {
             _errorInputDescription.value = true
         }
-        if(imageUrl.isBlank()) {
+        if (imageUrl.isBlank()) {
             _errorInputImageUrl.value = false
             result = false
         } else {
