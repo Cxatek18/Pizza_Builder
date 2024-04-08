@@ -6,29 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.airbnb.lottie.LottieDrawable
+import com.team.pizzabuilder.app.App
 import com.team.pizzabuilder.databinding.FragmentMainBinding
 import com.team.pizzabuilder.presentation.general.adapters.PizzaAdapter
-import java.lang.Thread.sleep
+import com.team.pizzabuilder.presentation.general.view_models.MainViewModel
+import com.team.pizzabuilder.presentation.general.view_models.MainViewModelFactory
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
+
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
 
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentMainBinding is null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory
-                .getInstance(requireActivity().application)
-        )[MainViewModel::class.java]
-    }
+    private lateinit var viewModel: MainViewModel
 
     private lateinit var adapter: PizzaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+        viewModel = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
         adapter = PizzaAdapter()
     }
 

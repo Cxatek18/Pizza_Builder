@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentManager
 import com.team.pizzabuilder.R
 import com.team.pizzabuilder.presentation.general.fragments.MainFragment
 import com.team.pizzabuilder.presentation.general.fragments.UserProfileFragment
-import com.team.pizzabuilder.presentation.owner.CreatePizzaFragment
+import com.team.pizzabuilder.presentation.owner.fragments.CreatePizzaFragment
 
 class NavigateHelperFragments(private val fragmentManager: FragmentManager) {
 

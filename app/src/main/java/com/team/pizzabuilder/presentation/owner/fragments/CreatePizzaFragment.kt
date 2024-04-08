@@ -1,4 +1,4 @@
-package com.team.pizzabuilder.presentation.owner
+package com.team.pizzabuilder.presentation.owner.fragments
 
 import android.Manifest
 import android.content.Context
@@ -21,22 +21,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.team.pizzabuilder.R
+import com.team.pizzabuilder.app.App
 import com.team.pizzabuilder.databinding.FragmentCreatePizzaBinding
 import com.team.pizzabuilder.presentation.navigate.NavigateHelperFragments
+import com.team.pizzabuilder.presentation.owner.view_models.CreatePizzaViewModel
+import com.team.pizzabuilder.presentation.owner.view_models.CreatePizzaViewModelFactory
+import javax.inject.Inject
 
 class CreatePizzaFragment : Fragment() {
+
+    @Inject
+    lateinit var vmFactory: CreatePizzaViewModelFactory
 
     private var _binding: FragmentCreatePizzaBinding? = null
     private val binding: FragmentCreatePizzaBinding
         get() = _binding ?: throw RuntimeException("FragmentCreatePizzaBinding is null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory
-                .getInstance(requireActivity().application)
-        )[CreatePizzaViewModel::class.java]
-    }
+    private lateinit var viewModel: CreatePizzaViewModel
 
     private val launcher: ActivityResultLauncher<PickVisualMediaRequest> =
         this.registerForActivityResult(
@@ -69,6 +70,8 @@ class CreatePizzaFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+        viewModel = ViewModelProvider(this, vmFactory)[CreatePizzaViewModel::class.java]
         setWindowInputMode()
     }
 
@@ -117,7 +120,9 @@ class CreatePizzaFragment : Fragment() {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.READ_MEDIA_IMAGES
-            ) == PackageManager.PERMISSION_GRANTED -> {}
+            ) == PackageManager.PERMISSION_GRANTED -> {
+            }
+
             else -> {
                 permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
             }
