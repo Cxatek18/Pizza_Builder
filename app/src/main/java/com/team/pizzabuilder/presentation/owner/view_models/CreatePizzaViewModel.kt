@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.team.pizzabuilder.domain.general.models.Pizza
-import com.team.pizzabuilder.domain.general.usecase.CreatePizzaUseCase
+import com.team.pizzabuilder.domain.owner.usecase.CreatePizzaUseCase
 import kotlinx.coroutines.launch
 
 class CreatePizzaViewModel(

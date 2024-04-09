@@ -18,4 +18,9 @@
     <string name="text_download_user_pizza_image">Загруженное фото</string>
     <string name="text_btn_watch_pizza">Посмотреть</string>
     <string name="text_btn_order_pizza">Заказать</string>
+    <string name="text_btn_delete_pizza">Удалить</string>
+    <string name="text_btn_no_delete_pizza">Отменить</string>
+    <string name="text_btn_update_pizza">Изменить</string>
+    <string name="text_title_delete_alert_dialog">Вы точно хотите удалить пиццу?</string>
+    <string name="text_desc_delete_alert_dialog">Подтвердите ваше решение</string>
 </resources>

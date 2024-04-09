@@ -17,4 +17,7 @@ interface PizzaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun createPizza(pizzaDbModel: PizzaDbModel)
+
+    @Query("DELETE FROM pizza WHERE id=:id")
+    suspend fun deletePizza(id: Int)
 }
