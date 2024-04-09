@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#EF1D1D</color>
+    <color name="green">#50CF4D</color>
     <color name="main_color_orange">#FB6D3A</color>
     <color name="text_error_color">#E32D2D</color>
+    <color name="text_hint_color">#C1C1C1</color>
 </resources>

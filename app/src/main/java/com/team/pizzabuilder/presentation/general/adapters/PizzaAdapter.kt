@@ -5,12 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.team.pizzabuilder.databinding.PizzaItemBinding
+import com.team.pizzabuilder.databinding.PizzaItemOwnerBinding
 import com.team.pizzabuilder.domain.general.models.Pizza
 
 class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
 
+    var onCLickDeletePizza: ((pizza: Pizza) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaViewHolder {
-        val binding = PizzaItemBinding.inflate(
+        val binding = PizzaItemOwnerBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -30,5 +33,14 @@ class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
         Glide.with(holder.itemView)
             .load(pizza.imageUrl)
             .into(holder.binding.pizzaImage)
+
+        listeningOnClickDeleteBtn(holder, pizza)
+    }
+
+    private fun listeningOnClickDeleteBtn(holder: PizzaViewHolder, pizza: Pizza) {
+        holder.binding.btnPizzaDelete.setOnClickListener {
+            onCLickDeletePizza?.invoke(pizza)
+            true
+        }
     }
 }

@@ -10,4 +10,6 @@ interface PizzaRepository {
     fun getListPizza(): LiveData<List<Pizza>>
 
     suspend fun createPizza(pizza: Pizza)
+
+    suspend fun deletePizza(pizza: Pizza)
 }

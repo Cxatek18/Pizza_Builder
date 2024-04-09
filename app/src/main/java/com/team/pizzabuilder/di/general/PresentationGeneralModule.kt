@@ -1,6 +1,7 @@
 package com.team.pizzabuilder.di.general
 
 import com.team.pizzabuilder.domain.general.usecase.GetListPizzaUseCase
+import com.team.pizzabuilder.domain.owner.usecase.DeletePizzaUseCase
 import com.team.pizzabuilder.presentation.general.view_models.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -10,10 +11,12 @@ class PresentationGeneralModule {
 
     @Provides
     fun provideMainViewModelFactory(
-        getListPizzaUseCase: GetListPizzaUseCase
+        getListPizzaUseCase: GetListPizzaUseCase,
+        deletePizzaUseCase: DeletePizzaUseCase
     ): MainViewModelFactory {
         return MainViewModelFactory(
-            getListPizzaUseCase = getListPizzaUseCase
+            getListPizzaUseCase = getListPizzaUseCase,
+            deletePizzaUseCase = deletePizzaUseCase
         )
     }
 }
