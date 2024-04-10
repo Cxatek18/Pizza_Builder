@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
-import com.team.pizzabuilder.databinding.PizzaItemBinding
 import com.team.pizzabuilder.databinding.PizzaItemOwnerBinding
 import com.team.pizzabuilder.domain.general.models.Pizza
 
 class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
 
     var onCLickDeletePizza: ((pizza: Pizza) -> Unit)? = null
+    var onClickUpdatePizza: ((pizza: Pizza) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaViewHolder {
         val binding = PizzaItemOwnerBinding.inflate(
@@ -35,11 +35,19 @@ class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
             .into(holder.binding.pizzaImage)
 
         listeningOnClickDeleteBtn(holder, pizza)
+        listeningOnClickUpdateBtn(holder, pizza)
     }
 
     private fun listeningOnClickDeleteBtn(holder: PizzaViewHolder, pizza: Pizza) {
         holder.binding.btnPizzaDelete.setOnClickListener {
             onCLickDeletePizza?.invoke(pizza)
+            true
+        }
+    }
+
+    private fun listeningOnClickUpdateBtn(holder: PizzaViewHolder, pizza: Pizza) {
+        holder.binding.btnPizzaUpdate.setOnClickListener {
+            onClickUpdatePizza?.invoke(pizza)
             true
         }
     }

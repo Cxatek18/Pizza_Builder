@@ -6,6 +6,7 @@ import com.team.pizzabuilder.di.general.PresentationGeneralModule
 import com.team.pizzabuilder.di.owner.PresentationOwnerModule
 import com.team.pizzabuilder.presentation.general.fragments.MainFragment
 import com.team.pizzabuilder.presentation.owner.fragments.CreatePizzaFragment
+import com.team.pizzabuilder.presentation.owner.fragments.UpdatePizzaFragment
 import dagger.Component
 
 @Component(
@@ -22,4 +23,6 @@ interface AppComponent {
     fun inject(fragment: MainFragment)
 
     fun inject(fragment: CreatePizzaFragment)
+
+    fun inject(fragment: UpdatePizzaFragment)
 }

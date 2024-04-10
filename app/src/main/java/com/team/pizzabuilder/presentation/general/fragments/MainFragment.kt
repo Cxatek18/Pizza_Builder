@@ -1,6 +1,7 @@
 package com.team.pizzabuilder.presentation.general.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -19,6 +20,7 @@ import com.team.pizzabuilder.domain.general.models.Pizza
 import com.team.pizzabuilder.presentation.general.adapters.PizzaAdapter
 import com.team.pizzabuilder.presentation.general.view_models.MainViewModel
 import com.team.pizzabuilder.presentation.general.view_models.MainViewModelFactory
+import com.team.pizzabuilder.presentation.navigate.NavigateHelperFragments
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -31,8 +33,15 @@ class MainFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentMainBinding is null")
 
     private lateinit var viewModel: MainViewModel
-
     private lateinit var adapter: PizzaAdapter
+    private lateinit var navigateHelperFragments: NavigateHelperFragments
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        navigateHelperFragments = NavigateHelperFragments(
+            requireActivity().supportFragmentManager
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +92,9 @@ class MainFragment : Fragment() {
         adapter.onCLickDeletePizza = {
             createDeletedDialog(it)
         }
+        adapter.onClickUpdatePizza = {
+            onCLickListenUpdatePizza(it)
+        }
     }
 
     private fun createDeletedDialog(pizza: Pizza) {
@@ -114,6 +126,12 @@ class MainFragment : Fragment() {
             viewModel.deletePizza(pizza)
             dialog.cancel()
         }
+    }
+
+    private fun onCLickListenUpdatePizza(
+        pizza: Pizza
+    ) {
+        navigateHelperFragments.navigateFromMainFragmentToUpdateFragment(pizza)
     }
 
     companion object {

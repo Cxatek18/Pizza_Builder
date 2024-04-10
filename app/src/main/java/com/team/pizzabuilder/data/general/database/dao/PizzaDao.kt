@@ -12,7 +12,7 @@ interface PizzaDao {
     @Query("SELECT * FROM pizza")
     fun getListPizza(): LiveData<List<PizzaDbModel>>
 
-    @Query("SELECT * FROM pizza WHERE id == :id")
+    @Query("SELECT * FROM pizza WHERE id=:id")
     suspend fun getPizza(id: Int): PizzaDbModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,4 +20,7 @@ interface PizzaDao {
 
     @Query("DELETE FROM pizza WHERE id=:id")
     suspend fun deletePizza(id: Int)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updatePizza(pizzaDbModel: PizzaDbModel)
 }
