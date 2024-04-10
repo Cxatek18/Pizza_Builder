@@ -28,4 +28,8 @@ class PizzaRepositoryImpl(
     override suspend fun deletePizza(pizza: Pizza) {
         pizzaDao.deletePizza(pizza.id)
     }
+
+    override suspend fun updatePizza(pizza: Pizza) {
+        pizzaDao.updatePizza(mapper.mapEntityToDbModel(pizza))
+    }
 }

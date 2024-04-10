@@ -23,4 +23,6 @@
     <string name="text_btn_update_pizza">Изменить</string>
     <string name="text_title_delete_alert_dialog">Вы точно хотите удалить пиццу?</string>
     <string name="text_desc_delete_alert_dialog">Подтвердите ваше решение</string>
+    <string name="text_update_pizza">Обновление пиццы</string>
+    <string name="btn_text_update_pizza">Обновить</string>
 </resources>

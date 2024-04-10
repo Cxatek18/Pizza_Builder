@@ -12,4 +12,6 @@ interface PizzaRepository {
     suspend fun createPizza(pizza: Pizza)
 
     suspend fun deletePizza(pizza: Pizza)
+
+    suspend fun updatePizza(pizza: Pizza)
 }

@@ -1,7 +1,10 @@
 package com.team.pizzabuilder.di.owner
 
+import com.team.pizzabuilder.domain.general.usecase.GetPizzaUseCase
 import com.team.pizzabuilder.domain.owner.usecase.CreatePizzaUseCase
+import com.team.pizzabuilder.domain.owner.usecase.UpdatePizzaUseCase
 import com.team.pizzabuilder.presentation.owner.view_models.CreatePizzaViewModelFactory
+import com.team.pizzabuilder.presentation.owner.view_models.UpdatePizzaViewModelFactory
 import dagger.Module
 import dagger.Provides
 
@@ -14,6 +17,17 @@ class PresentationOwnerModule {
     ): CreatePizzaViewModelFactory {
         return CreatePizzaViewModelFactory(
             createPizzaUseCase = createPizzaUseCase
+        )
+    }
+
+    @Provides
+    fun provideUpdatePizzaViewModelFactory(
+        updatePizzaUseCase: UpdatePizzaUseCase,
+        getPizzaUseCase: GetPizzaUseCase
+    ): UpdatePizzaViewModelFactory {
+        return UpdatePizzaViewModelFactory(
+            updatePizzaUseCase = updatePizzaUseCase,
+            getPizzaUseCase = getPizzaUseCase
         )
     }
 }

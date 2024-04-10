@@ -2,9 +2,11 @@ package com.team.pizzabuilder.presentation.navigate
 
 import androidx.fragment.app.FragmentManager
 import com.team.pizzabuilder.R
+import com.team.pizzabuilder.domain.general.models.Pizza
 import com.team.pizzabuilder.presentation.general.fragments.MainFragment
 import com.team.pizzabuilder.presentation.general.fragments.UserProfileFragment
 import com.team.pizzabuilder.presentation.owner.fragments.CreatePizzaFragment
+import com.team.pizzabuilder.presentation.owner.fragments.UpdatePizzaFragment
 
 class NavigateHelperFragments(private val fragmentManager: FragmentManager) {
 
@@ -44,6 +46,22 @@ class NavigateHelperFragments(private val fragmentManager: FragmentManager) {
         fragmentManager.beginTransaction()
             .replace(R.id.fragment_container, MainFragment.newInstance())
             .addToBackStack(MainFragment.TAG_FRAGMENT)
+            .commit()
+    }
+
+    fun navigateFromUpdatePizzaToMainFragment() {
+        fragmentManager.popBackStack()
+        fragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, MainFragment.newInstance())
+            .addToBackStack(MainFragment.TAG_FRAGMENT)
+            .commit()
+    }
+
+    fun navigateFromMainFragmentToUpdateFragment(pizza: Pizza) {
+        fragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, UpdatePizzaFragment.newInstance(pizza))
+            .addToBackStack(UpdatePizzaFragment.TAG_FRAGMENT)
             .commit()
     }
     // navigate admin functionality

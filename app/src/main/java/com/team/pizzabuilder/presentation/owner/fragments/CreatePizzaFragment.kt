@@ -97,7 +97,7 @@ class CreatePizzaFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding == null
+        _binding = null
     }
 
     private fun checkVisibleKeyboard() {
@@ -276,16 +276,16 @@ class CreatePizzaFragment : Fragment() {
     }
 
     companion object {
+        const val TAG_FRAGMENT = "create_pizza"
         private const val TEXT_ERROR_DOWNLOAD_IMAGE =
             "Произошла ошибка, повторите ещё раз. Если не получиться напишите нам."
-        private const val ERROR_TEXT_NAME = "Поле (Имя) не может быть пустым"
-        private const val ERROR_TEXT_DESCRIPTION = "Поле (Описание) не может быть пустым"
-        private const val ERROR_TEXT_PRICE = "Поле (Цена) должно быть больше 0"
+        private const val ERROR_TEXT_NAME = "Название не может быть пустым"
+        private const val ERROR_TEXT_DESCRIPTION = "Описание не может быть пустым"
+        private const val ERROR_TEXT_PRICE = "Цена должна быть больше 0"
         private const val ERROR_TEXT_IMAGE = "Фото должно быть загруженно"
         private const val TEXT_IMAGE_MEDIA_TRUE_PERMISSION = "Теперь вы можете загружать фото"
         private const val TEXT_IMAGE_MEDIA_FALSE_PERMISSION =
             "Выдайте разрешение на доступ к вашим медиафайлам"
-        const val TAG_FRAGMENT = "create_pizza"
 
         fun newInstance(): CreatePizzaFragment {
             return CreatePizzaFragment()

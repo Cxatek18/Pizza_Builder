@@ -1,10 +1,11 @@
 package com.team.pizzabuilder.di.general
 
 import com.team.pizzabuilder.domain.general.repository.PizzaRepository
-import com.team.pizzabuilder.domain.owner.usecase.CreatePizzaUseCase
 import com.team.pizzabuilder.domain.general.usecase.GetListPizzaUseCase
 import com.team.pizzabuilder.domain.general.usecase.GetPizzaUseCase
+import com.team.pizzabuilder.domain.owner.usecase.CreatePizzaUseCase
 import com.team.pizzabuilder.domain.owner.usecase.DeletePizzaUseCase
+import com.team.pizzabuilder.domain.owner.usecase.UpdatePizzaUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -30,6 +31,11 @@ class DomainGeneralModule {
     @Provides
     fun provideDeletePizzaUseCase(repository: PizzaRepository): DeletePizzaUseCase {
         return DeletePizzaUseCase(repository)
+    }
+
+    @Provides
+    fun provideUpdatePizzaUseCase(repository: PizzaRepository): UpdatePizzaUseCase {
+        return UpdatePizzaUseCase(repository)
     }
     // UseCases
 }
