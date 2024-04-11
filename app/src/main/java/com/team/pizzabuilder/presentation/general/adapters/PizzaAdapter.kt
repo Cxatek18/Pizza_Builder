@@ -11,6 +11,7 @@ class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
 
     var onCLickDeletePizza: ((pizza: Pizza) -> Unit)? = null
     var onClickUpdatePizza: ((pizza: Pizza) -> Unit)? = null
+    var onClickDetailPizza: ((pizzaId: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaViewHolder {
         val binding = PizzaItemOwnerBinding.inflate(
@@ -36,6 +37,7 @@ class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
 
         listeningOnClickDeleteBtn(holder, pizza)
         listeningOnClickUpdateBtn(holder, pizza)
+        listeningOnClickDetailBtn(holder, pizza.id)
     }
 
     private fun listeningOnClickDeleteBtn(holder: PizzaViewHolder, pizza: Pizza) {
@@ -48,6 +50,13 @@ class PizzaAdapter : ListAdapter<Pizza, PizzaViewHolder>(PizzaDiffCallback) {
     private fun listeningOnClickUpdateBtn(holder: PizzaViewHolder, pizza: Pizza) {
         holder.binding.btnPizzaUpdate.setOnClickListener {
             onClickUpdatePizza?.invoke(pizza)
+            true
+        }
+    }
+
+    private fun listeningOnClickDetailBtn(holder: PizzaViewHolder, pizzaId: Int) {
+        holder.binding.btnPizzaDetail.setOnClickListener {
+            onClickDetailPizza?.invoke(pizzaId)
             true
         }
     }

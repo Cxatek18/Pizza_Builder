@@ -95,6 +95,9 @@ class MainFragment : Fragment() {
         adapter.onClickUpdatePizza = {
             onCLickListenUpdatePizza(it)
         }
+        adapter.onClickDetailPizza = {
+            onCLickListenDetailPizza(it)
+        }
     }
 
     private fun createDeletedDialog(pizza: Pizza) {
@@ -132,6 +135,12 @@ class MainFragment : Fragment() {
         pizza: Pizza
     ) {
         navigateHelperFragments.navigateFromMainFragmentToUpdateFragment(pizza)
+    }
+
+    private fun onCLickListenDetailPizza(
+        pizzaId: Int
+    ) {
+        navigateHelperFragments.navigateFromMainFragmentToPizzaDetailFragment(pizzaId)
     }
 
     companion object {
