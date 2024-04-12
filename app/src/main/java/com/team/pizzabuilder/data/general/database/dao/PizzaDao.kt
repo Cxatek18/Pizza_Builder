@@ -23,4 +23,9 @@ interface PizzaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updatePizza(pizzaDbModel: PizzaDbModel)
+
+    @Query(
+        "SELECT * FROM pizza WHERE name LIKE :searchParameter OR description LIKE :searchParameter"
+    )
+    fun searchPizza(searchParameter: String): LiveData<List<PizzaDbModel>>
 }

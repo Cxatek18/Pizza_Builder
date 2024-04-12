@@ -25,4 +25,6 @@
     <string name="text_desc_delete_alert_dialog">Подтвердите ваше решение</string>
     <string name="text_update_pizza">Обновление пиццы</string>
     <string name="btn_text_update_pizza">Обновить</string>
+    <string name="text_hint_search">Поиск</string>
+    <string name="header_name_app">PizzaBuilder</string>
 </resources>

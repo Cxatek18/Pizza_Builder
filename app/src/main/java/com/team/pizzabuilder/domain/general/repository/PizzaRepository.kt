@@ -14,4 +14,6 @@ interface PizzaRepository {
     suspend fun deletePizza(pizza: Pizza)
 
     suspend fun updatePizza(pizza: Pizza)
+
+    fun searchPizza(searchParameter: String): LiveData<List<Pizza>>
 }

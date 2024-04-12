@@ -5,10 +5,13 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
@@ -63,12 +66,20 @@ class MainFragment : Fragment() {
         observeViewModel()
         binding.rvPizzaList.adapter = adapter
         setUpClickListenerDeletePizza()
+        onCLickSearchBtn()
+        onCLickCloseSearchField()
+        searchPizzaListener()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
         requireActivity().finish()
+    }
+
+    fun View.hideMyKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
     private fun observeViewModel() {
@@ -86,6 +97,23 @@ class MainFragment : Fragment() {
                 ).show()
             }
         }
+    }
+
+    private fun searchPizzaListener() {
+        binding.etSearchPizza.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.searchPizza("%${s.toString()}%")
+                    .observe(viewLifecycleOwner) {
+                        adapter.submitList(it)
+                    }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
 
     private fun setUpClickListenerDeletePizza() {
@@ -112,6 +140,33 @@ class MainFragment : Fragment() {
         onClickListenCloseDeleteDialog(btnNotDelete, dialog)
         onClickListenDeletePizza(btnDelete, pizza, dialog)
         dialog.show()
+    }
+
+    private fun onCLickSearchBtn() {
+        with(binding) {
+            btnSearch.setOnClickListener {
+                logoHeader.visibility = View.GONE
+                titleHeader.visibility = View.GONE
+                btnSearch.visibility = View.GONE
+                etSearchPizza.visibility = View.VISIBLE
+                btnCloseSearchField.visibility = View.VISIBLE
+                etSearchPizza.requestFocus()
+            }
+        }
+    }
+
+    private fun onCLickCloseSearchField() {
+        with(binding) {
+            btnCloseSearchField.setOnClickListener {
+                logoHeader.visibility = View.VISIBLE
+                titleHeader.visibility = View.VISIBLE
+                btnSearch.visibility = View.VISIBLE
+                etSearchPizza.visibility = View.GONE
+                btnCloseSearchField.visibility = View.GONE
+                etSearchPizza.text.clear()
+                it.hideMyKeyboard()
+            }
+        }
     }
 
     private fun onClickListenCloseDeleteDialog(btnNotDelete: AppCompatButton, dialog: Dialog) {
