@@ -32,4 +32,9 @@ class PizzaRepositoryImpl(
     override suspend fun updatePizza(pizza: Pizza) {
         pizzaDao.updatePizza(mapper.mapEntityToDbModel(pizza))
     }
+
+    override fun searchPizza(searchParameter: String): LiveData<List<Pizza>> = pizzaDao
+        .searchPizza(searchParameter).map {
+            mapper.mapListDbModelToListEntity(it)
+        }
 }
